@@ -1,0 +1,19 @@
+@charset "UTF-8";
+th{
+	height: 50px;
+ 	 background-color: #d5bca2;
+}
+
+td{
+	width : 10%;
+	text-align: center;
+	border-bottom: 1px solid #d5bca2;
+}
+
+tr{
+	width:10%;
+	height: 50px;
+}
+tr:hover{
+	background-color: #e4d2c0;
+}
