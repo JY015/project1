@@ -7,32 +7,31 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="./css/board.css">
+<link rel="stylesheet" href="./css/menu.css">
 </head>
 <body>
-	<h1>Board Page</h1>
-	<img alt="사진" src="./img/images.PNG" >
-	<br>
-	<a href="./">index로 가기</a>
+<%@ include file="menu.jsp" %>
+<div class="whole">
+	<div class="whole2">
+	<div class="board-color" id="menuName">게시판</div>
 	<br>
 	<table>
-		<tr>
-			<th>번호</th>
-			<th>제목</th>
-			<th>글쓴이</th>
-			<th >날짜</th>
-			<th>조회수</th>
-		</tr>
 		<c:forEach items="${list}" var="i">
 			<!-- onclick 자바스크립트 페이지 이동, URL?파라미터=값 -->
+			
 			<tr onclick="location.href='./detail?bno=${i.bno }'">
-				<td class="td1">${i.bno }</td>
-				<td class="td1">${i.btitle }</td>
-				<td class="td1">${i.bwrite }</td>
-				<td class="td1">${i.bdate }</td>
-				<td class="td1">${i.blike }</td>
+				<td class="td3">${i.blike }</td>
+				<td class="td1" id="hidden">${i.bno }</td>
+				<td class="td4" id="solid">${i.btitle }</td>
+				<td class="td1" id="solid">${i.bwrite }</td>
+				<td class="td1" >${i.bdate }</td>
 			</tr>
 
 		</c:forEach>
 	</table>
+	<br>
+	<button onclick="location.href='write'">글쓰기</button>
+	</div>
+</div>
 </body>
 </html>

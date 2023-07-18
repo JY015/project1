@@ -5,10 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="./css/board.css">
 </head>
 <body>
-<h1>Index Page</h1>
-	<img alt="사진" src="./img/images.PNG" >
-<a href="./board">보드로 가기</a>
+<%@ include file="menu.jsp" %>
+
+	<!-- <img alt="사진" src="./img/a.PNG" > -->
+<br>
+<div id="menuName">Index Page</div>
 </body>
 </html>

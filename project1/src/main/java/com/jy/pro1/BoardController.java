@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class BoardController {
@@ -34,5 +35,29 @@ public class BoardController {
 //		m.addAttribute("bno",dto.getBno());
 		return "detail";
 	}
+	
+	@GetMapping("/write")
+	public String write() {
+		return "write";
+	}
+	
+	@PostMapping("/write")
+	public String write(HttpServletRequest req) {
+
+		// 사용자가 입력한 데이터 변수에 담기
+//		System.out.println(req.getParameter("title"));
+//		System.out.println(req.getParameter("content"));
+		BoardDTO dto = new BoardDTO();
+		dto.setBtitle(req.getParameter("title"));
+		dto.setBcontent(req.getParameter("content"));
+		dto.setBwrite("홍길동");
+		boardService.write(dto);
+		
+		//Service -> DAO -> mybatis -> DB로 보내서 저장하기
+		
+		
+		return "redirect:board"; // 다시 컨트롤러 지나가기 GET방식으로 간다.
+	}
+	
 }
 

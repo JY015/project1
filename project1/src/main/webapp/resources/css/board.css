@@ -1,19 +1,75 @@
 @charset "UTF-8";
-th{
-	height: 50px;
- 	 background-color: #d5bca2;
+
+table {
+	border-top: 1px solid #d1d1d1;
 }
 
-td{
-	width : 10%;
+td {
+	width: 3%;
 	text-align: center;
-	border-bottom: 1px solid #d5bca2;
+	border-bottom: 1px solid #dddddd;
 }
 
-tr{
-	width:10%;
-	height: 50px;
+.td3 {
+	width: 1%;
+	text-align: center;
 }
-tr:hover{
+
+.td4 {
+	width: 30%;
+	text-align: left;
+}
+
+tr {
+	width: 10%;
+	height: 40px;
+}
+
+/* tr:hover {
 	background-color: #e4d2c0;
+} */
+
+#hidden {
+	display: none;
+}
+
+body {
+	font-family: "Roboto", "Noto Sans KR", 나눔고딕, "Nanum Gothic",
+		"Malgun Gothic", 맑은고딕, 굴림, 돋움, "Dotum", "sans-serif";
+	font-size: 12px;
+	font-weight: normal;
+	color: #111;
+	font-smoothing: antialiased;
+	-webkit-font-smoothing: antialiased;
+	moz-osx-font-smoothing: grayscale;
+	text-rendering: optimizeLegibility;
+	line-height: 1;
+	margin: 0;
+	padding: 0;
+}
+
+#solid {
+	border-right: 1px solid #d1d1d1;
+}
+
+button {
+	width: 80px;
+	height:30px;
+	color: white;
+	background-color: #37475A;
+	float: right;
+	text-align: center;
+	
+}
+
+.whole{
+	background: #eeeeee;
+	margin: 0px;
+	padding: 10px;
+}
+
+.whole2{
+	background:white;
+	margin: 5px;
+	padding: 50px;
 }
