@@ -21,7 +21,7 @@ public class BoardDAO {
 		return sqlSession.selectList("board.boardList");
 	}
 
-	public BoardDTO detail(String bno) {
+	public BoardDTO detail(int bno) {
 		// 앞에는 네임스페이스.아이디, 값
 		return (BoardDTO) sqlSession.selectOne("board.detail", bno);
 	}
@@ -29,4 +29,14 @@ public class BoardDAO {
 	public void write(BoardDTO dto) {
 		sqlSession.insert("board.write",dto);
 	}
+
+	public void delete(BoardDTO dto) {
+		sqlSession.delete("board.delete", dto);
+	}
+	
+	public void update(BoardDTO dto) {
+		sqlSession.update("board.update",dto);
+		
+	}
+
 }

@@ -5,7 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="./css/board.css">
+<link rel="stylesheet" href="./css/menu.css">
+<!-- <link rel="shortcut icon" type="img/favicon.ico"  type="image/x-icon">
+<link rel="icon" type="img/favicon.ico"  type="image/x-icon"> -->
 </head>
 <body>
 <%@ include file="menu.jsp" %>

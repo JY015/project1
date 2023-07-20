@@ -9,14 +9,25 @@
 		LIMIT 10
 	</select>
 	
-	<select id="detail" parameterType="String" resultType="boardDTO" >
+	<select id="detail" parameterType="Integer" resultType="boardDTO" >
 		SELECT * FROM board
 		WHERE bno = #{bno}
 	</select>
  
  	<insert id="write" parameterType="boardDTO" >
- 		INSERT INTO board (btitle, bcontent, bwrite)
- 		VALUES(#{btitle }, #{bcontent },#{bwrite })
+ 		INSERT INTO board (btitle, bcontent, bwrite, bip)
+ 		VALUES(#{btitle }, #{bcontent },#{bwrite }, #{bip })
  	</insert>
+ 	
+ 	<delete id="delete" parameterType="boardDTO" >
+ 		DELETE FROM board
+ 		where bno=#{bno}
+ 	</delete>
+ 	
+ 	<update id="update" parameterType="boardDTO">
+ 		UPDATE board 
+ 		SET btitle= #{btitle }, bcontent=#{bcontent }
+ 		where bno= #{bno }
+ 	</update>
 
 </mapper>

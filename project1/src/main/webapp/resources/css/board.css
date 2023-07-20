@@ -53,12 +53,13 @@ body {
 }
 
 button {
-	width: 80px;
-	height:30px;
+	width: 81px;
+	height:38px;
 	color: white;
 	background-color: #37475A;
 	float: right;
 	text-align: center;
+	margin-right: 4px;
 	
 }
 
