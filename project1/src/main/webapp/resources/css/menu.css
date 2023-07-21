@@ -1,0 +1,43 @@
+@charset "UTF-8";
+.menu_title{
+	font-size:15px;
+	border-right : 1px solid #4e5c6b;
+}
+#menuName{
+	font-size: large;
+	font-weight: 500;
+}
+
+body{
+	margin:0;
+	padding: 0;
+}
+
+nav{
+	/* position: fixed; */
+	top : 0;
+	width : 100%;
+	height : 50px;
+	background-color: #232f3e;
+	color:white;
+}
+
+nav ul{
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+}
+
+nav li{
+	list-style : none; /* li앞에 원을 업애준다. */
+	float : left;
+	width : 100px;
+	height : 50px;
+	line-height:50px;
+	text-align: center;
+/* 	border-right: 0.5px solid #eff0eb;*/
+}
+
+nav li:hover{
+	background-color: #2e4050;
+}
