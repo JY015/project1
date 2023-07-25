@@ -1,29 +1,28 @@
-package com.jy.pro1;
+package com.jy.pro1.dao;
 
 import java.util.List;
-import java.util.Map;
-
-import javax.inject.Inject;
-import javax.inject.Named;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import com.jy.pro1.dto.BoardDTO;
 
 // Inject 사용해보기
 
-@Repository("boardDAO")
+@Repository
 public class BoardDAO {
-	@Inject
-	@Named("sqlSession")
+	
+	@Autowired
 	private SqlSession sqlSession;
 
-	public List<Map<String,Object>> boardList(){
+	public List<BoardDTO> boardList(){
 		return sqlSession.selectList("board.boardList");
 	}
 
-	public BoardDTO detail(int bno) {
+	public BoardDTO detail(BoardDTO dto2) {
 		// 앞에는 네임스페이스.아이디, 값
-		return (BoardDTO) sqlSession.selectOne("board.detail", bno);
+		return (BoardDTO) sqlSession.selectOne("board.detail", dto2);
 	}
 
 	public void write(BoardDTO dto) {

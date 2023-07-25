@@ -1,32 +1,31 @@
-package com.jy.pro1;
+package com.jy.pro1.service;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
-
-import javax.inject.Inject;
-import javax.inject.Named;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service("boardService")
+import com.jy.pro1.dao.BoardDAO;
+import com.jy.pro1.dto.BoardDTO;
+import com.jy.pro1.util.Util;
+
+@Service
 public class BoardService {
+	
+	@Autowired
+	private BoardDAO boardDAO;
 	
 	@Autowired
 	private Util util;
 	
-	@Inject
-	@Named("boardDAO")
-	private BoardDAO boardDAO;
-	
 	// 보드 리스트 불러오는 메소드
-	public List<Map<String, Object>> boardList(){
+	public List<BoardDTO> boardList(){
 		return boardDAO.boardList();
 	}
 
-	public BoardDTO detail(int bno) {
-		BoardDTO dto = boardDAO.detail(bno);
+	public BoardDTO detail(BoardDTO dto2) {
+		BoardDTO dto = boardDAO.detail(dto2);
 		// 여기서 ip 뽑아오기
 		// ip 중간 **
 		// 172.**.1.19

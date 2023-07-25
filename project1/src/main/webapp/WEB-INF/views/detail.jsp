@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,7 +32,7 @@
 	<div class="detail-title" id="bTitle">${dto.btitle } ${dto.blike }</div>
 	<%-- 값 : ${dto }<br><br> --%>
 	<div class="detail-content">
-			<div class="name" id="detail-name">${dto.bwrite }님</div>
+			<div class="name" id="detail-name">${dto.m_name }님</div>
 		<div class="name-bar">
 			<div class="date"  id="detail-date">${dto.bdate }</div>
 			<div class="date"  id="detail-date">${dto.bip }</div>
@@ -38,15 +40,12 @@
 		<div class="content">${dto.bcontent }</div>
 		<!-- <img alt="삭제" src="/img/delete.png">
 		<img alt="수정" src="/img/update.png"> -->
-		<button onclick="del()">삭제</button> 
+		<c:if test="${sessionScope.mid ne null && sessionScope.mid eq dto.m_id }" >
+		<%-- <c:if test="${sessionScope.mname eq dto.m_name }" > --%>
+		<button onclick="del()">삭제</button>
 		<button onclick="update()">수정</button>
+		</c:if> 
 	</div>
 </body>
 
-<!-- <script type="text/javascript">
-	var del = document.getElementById('parent-id');
-	if(confirm("삭제 하시겠습니까?")) {
-
-  }
-</script>-->
 </html>

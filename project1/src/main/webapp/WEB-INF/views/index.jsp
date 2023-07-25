@@ -16,6 +16,6 @@
 <br>
 <div id="menuName">Index Page</div>
 <br>
-<h3><%= request.getHeader("User-Agent") %></h3>
-</body>
+<%-- <h3><%= request.getHeader("User-Agent") %></h3>--%>
+ </body>
 </html>

@@ -1,16 +1,17 @@
-package com.jy.pro1;
+package com.jy.pro1.controller;
 
-import java.util.Map;
-
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
+import com.jy.pro1.dto.BoardDTO;
+import com.jy.pro1.service.BoardService;
+import com.jy.pro1.util.Util;
 
 @Controller
 public class BoardController {
@@ -19,8 +20,8 @@ public class BoardController {
 	@Autowired
 	private Util util;
 
-	@Resource(name = "boardService")
 	// @Service("boardService") 여기쓴 이름과 동일하게 써야됨
+	@Autowired
 	private BoardService boardService;
 	
 	@GetMapping("/board")
@@ -37,32 +38,54 @@ public class BoardController {
 	public String detail(HttpServletRequest req, Model m) {
 		// bno에 요청하는 값이 있다. 이 값을 db까지 보낸다.
 		int bno = util.strToInt(req.getParameter("bno"));
-		BoardDTO dto = boardService.detail(bno);
-		m.addAttribute("dto", dto);
+	
+//		DTO로 변경합니다.
+		BoardDTO dto = new BoardDTO();
+		dto.setBno(bno);
+//		dto.setM_id(null); 글 상세보기에서는 mid가 없어도 된다.
+		
+		BoardDTO res = boardService.detail(dto);
+		m.addAttribute("dto", res);
+		
 //		m.addAttribute("bno",dto.getBno());
 		return "detail";
 	}
 
 	@GetMapping("/write")
-	public String write() {
-		return "write";
+	public String write(HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		if(session.getAttribute("mname") != null) {
+			return "write";
+		} else {			
+			return "redirect:/login";
+		}
 	}
 
 	@PostMapping("/write")
-	public String write(HttpServletRequest req) {
+	public String write(HttpServletRequest req, BoardDTO dto ) {
 
+		HttpSession session = req.getSession();
+		if(session.getAttribute("mid")!=null) {
+			// 로그인 했음.
+			dto = new BoardDTO();
+			dto.setBtitle(req.getParameter("title"));
+			dto.setBcontent(req.getParameter("content"));
+			//세션에서 불러오기
+			dto.setM_id((String)session.getAttribute("mid")); // 세션에서 가져옴
+			dto.setM_name((String)session.getAttribute("mname")); // 세션에서 가져옴
+
+			// Service -> DAO -> mybatis -> DB로 보내서 저장하기
+			
+			boardService.write(dto);
+			
+			return "redirect:board"; // 다시 컨트롤러 지나가기 GET방식으로 간다.
+		} else {
+			// 로그인 안했음 = 로그인 해
+			return "redirect:/login"; 
+		}
 		// 사용자가 입력한 데이터 변수에 담기
 //		System.out.println(req.getParameter("title"));
 //		System.out.println(req.getParameter("content"));
-		BoardDTO dto = new BoardDTO();
-		dto.setBtitle(req.getParameter("title"));
-		dto.setBcontent(req.getParameter("content"));
-		dto.setBwrite("홍길동");
-		boardService.write(dto);
-
-		// Service -> DAO -> mybatis -> DB로 보내서 저장하기
-
-		return "redirect:board"; // 다시 컨트롤러 지나가기 GET방식으로 간다.
 	}
 	
 	@GetMapping("/delete")
@@ -90,9 +113,20 @@ public class BoardController {
 	
 	@GetMapping("/update")
 	public String getUpdate(HttpServletRequest req, Model m) {
-		int bno = Integer.parseInt(req.getParameter("bno"));
-		BoardDTO dto = boardService.detail(bno);
-		m.addAttribute("dto",dto);
+		
+		HttpSession session = req.getSession();
+		
+		// dto를 하나 만들어서 거기에 담겠다. = bno, mid
+		// db에 bno를 보내서 dto를 얻어온다.
+		BoardDTO dto = new BoardDTO();
+		dto.setBno(util.strToInt(req.getParameter("bno")));
+		// 내 글만 수정할 수 있도록 세션에 있는 mid도 보낸다.
+		dto.setM_id((String)session.getAttribute("mid"));
+
+		
+		BoardDTO res = boardService.detail(dto);
+
+		m.addAttribute("dto", res);
 		return "update";
 	}
 	
@@ -123,11 +157,6 @@ public class BoardController {
 		boardService.update(dto);
 
 		return "redirect:detail?bno="+bno;
-	}
-	
-	@GetMapping("/login")
-	public String login() {
-		return "login";
 	}
 
 }

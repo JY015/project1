@@ -20,11 +20,14 @@
 							<div>
 								<h2 class="signin_title">게시판 로그인</h2>
 								<div class="signin-section">
-									<input class="signin_id" type="text" placeholder="아이디">
+								<form action="./login" method="post">
+									<input class="signin_id" type="text" name="id" id="id" placeholder="아이디" required="required" maxlength="10">
 									<br> 
-									<input class="signin_pw" type="password" placeholder="비밀번호">
+									<input class="signin_pw" type="password"  name="pw" id="pw" placeholder="비밀번호" required="required" maxlength="15">
 									<br>
-									<button class="button_login" type="button" onclick="location.href='board'">로그인</button>
+									<button class="button_login" >로그인</button>
+									<!--<button class="button_login" type="button" onclick="location.href='index'">로그인</button> -->
+								</form>
 								</div>
 							</div>
 							<a href="" class="button_join">회원가입하기</a>

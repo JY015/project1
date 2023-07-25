@@ -41,3 +41,13 @@ nav li{
 nav li:hover{
 	background-color: #2e4050;
 }
+
+.menu_login{
+	font-size:15px;
+	float:right;
+}
+
+#login_id{
+	width: 170px;
+
+}
