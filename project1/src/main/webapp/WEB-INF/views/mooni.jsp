@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="./css/board.css">
 <link rel="stylesheet" href="./css/menu.css">
-
+<link rel="icon" href="data:;base64,iVBORw0KGgo=">
 </head>
 <body>
 <%@ include file="menu.jsp" %>

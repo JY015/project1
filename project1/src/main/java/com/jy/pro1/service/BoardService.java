@@ -1,6 +1,5 @@
 package com.jy.pro1.service;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,19 +24,30 @@ public class BoardService {
 	}
 
 	public BoardDTO detail(BoardDTO dto2) {
+		// 좋아요 수 +1하기 기능 넣기
+		boardDAO.views(dto2);
+		
+		
 		BoardDTO dto = boardDAO.detail(dto2);
-		// 여기서 ip 뽑아오기
-		// ip 중간 **
-		// 172.**.1.19
-		if(dto.getBip() !=null && dto.getBip().indexOf(".") != -1){
-		String[] strArr = dto.getBip().split("[.]");
-		strArr[1] = "**";
-//		System.out.println(Arrays.toString(strArr));
-		dto.setBip(Arrays.toString(strArr).replaceAll("\\[","")
-				.replaceAll("\\]",""));
+//		System.out.println(dto);
+//		System.out.println(dto.getBno());
 //		System.out.println(dto.getBip());
+		
+		if(dto !=null ) { // 내 글이 아닐때 null 들어온다. 즉, null이 아닐때라고 검사
+			// 여기서 ip 뽑아오기
+			// ip 중간 **
+			// 172.**.1.19
+			if(dto.getBip() !=null && dto.getBip().indexOf(".") != -1){
+				String[] strArr = dto.getBip().split("[.]");
+				strArr[1] = "**";
+				dto.setBip(String.join(".", strArr));
+			}
+			return dto;
+			
+		}else {
+			return null;
 		}
-		return dto;
+		
 	}
 
 	public void write(BoardDTO dto) {

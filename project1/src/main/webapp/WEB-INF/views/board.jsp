@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="./css/board.css">
 <link rel="stylesheet" href="./css/menu.css">
+<link rel="icon" href="data:;base64,iVBORw0KGgo=">
 </head>
 <body>
 	<%@ include file="menu.jsp"%>
@@ -23,10 +24,10 @@
 						<c:forEach items="${list}" var="i">
 							<!-- onclick 자바스크립트 페이지 이동, URL?파라미터=값 -->
 							<tr onclick="location.href='./detail?bno=${i.bno }'">
-								<td class="td3">${i.blike }</td>
-								<td class="td1" id="hidden">${i.m_name }</td>
+								<td class="td2" id="solid" hidden="hidden">${i.bno }</td>
 								<td class="td4" id="solid">${i.btitle }</td>
 								<td class="td1" id="solid">${i.m_name }</td>
+								<td class="td3" id="solid">${i.blike }</td>
 								<td class="td1">${i.bdate }</td>
 							</tr>
 						</c:forEach>

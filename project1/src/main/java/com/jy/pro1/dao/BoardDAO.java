@@ -38,4 +38,9 @@ public class BoardDAO {
 		
 	}
 
+	public void views(BoardDTO dto2) {
+		sqlSession.update("board.views", dto2);
+		
+	}
+
 }

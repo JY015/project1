@@ -21,12 +21,17 @@
  	</insert>
  	
  	<delete id="delete" parameterType="boardDTO" >
- 		DELETE FROM board where bno=#{bno}
+ 		DELETE FROM board where bno=#{bno} AND m_no=(select m_no from members where m_id=#{m_id})
  	</delete>
  	
  	<update id="update" parameterType="boardDTO">
  		UPDATE board 
  		SET btitle= #{btitle }, bcontent=#{bcontent }
+ 		where bno= #{bno }
+ 	</update>
+ 	
+ 	<update id="views" parameterType="boardDTO">
+ 		UPDATE board SET blike = blike + 1 
  		where bno= #{bno }
  	</update>
 

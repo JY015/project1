@@ -92,17 +92,25 @@ public class BoardController {
 //	public String delete(@RequestParam(value="bno", required=false, defaultValue="0") int bno) HttpServletRequest
 //		System.out.println("bno : "+bno);
 	public String delete(HttpServletRequest req) {
-//		System.out.println(req.getParameter("bno"));
+
+		HttpSession session = req.getSession();
+		System.out.println("mid : " + session.getAttribute("mid"));
+
 		int bno = Integer.parseInt(req.getParameter("bno"));
-		BoardDTO dto = new BoardDTO();
-		dto.setBno(bno);
-		// 추후 로그인을 하면 사용자의 정보도 담아서 보낸다.
-		
-		boardService.delete(dto);
-		
-		return "redirect:board";
+		if (session.getAttribute("mid") != null ) {
+			BoardDTO dto = new BoardDTO();
+			dto.setBno(bno);
+			dto.setM_id((String) session.getAttribute("mid"));
+			// 추후 로그인을 하면 사용자의 정보도 담아서 보낸다.
+
+			boardService.delete(dto);
+
+			return "redirect:board"; // 다시 컨트롤러 지나가기 GET방식으로 간다.
+		} else {
+			// 로그인 안했음 = 로그인 해
+			return "redirect:/login";
+		}
 	}
-	
 //	public ModelAndView getUpdate(@RequestParam("bno") int bno) {
 //		ModelAndView mv = new ModelAndView("update"); //jsp
 //		int bno = Integer.parseInt(req.getParameter("bno"));	
@@ -113,21 +121,29 @@ public class BoardController {
 	
 	@GetMapping("/update")
 	public String getUpdate(HttpServletRequest req, Model m) {
-		
+
 		HttpSession session = req.getSession();
-		
-		// dto를 하나 만들어서 거기에 담겠다. = bno, mid
-		// db에 bno를 보내서 dto를 얻어온다.
-		BoardDTO dto = new BoardDTO();
-		dto.setBno(util.strToInt(req.getParameter("bno")));
-		// 내 글만 수정할 수 있도록 세션에 있는 mid도 보낸다.
-		dto.setM_id((String)session.getAttribute("mid"));
+		// 로그인 하지 않으면 로그인 화면으로 던지기
+		if (session.getAttribute("mid") != null) {
 
-		
-		BoardDTO res = boardService.detail(dto);
+			// dto를 하나 만들어서 거기에 담겠다. = bno, mid
+			// db에 bno를 보내서 dto를 얻어온다.
+			BoardDTO dto = new BoardDTO();
+			dto.setBno(util.strToInt(req.getParameter("bno")));
+			// 내 글만 수정할 수 있도록 세션에 있는 mid도 보낸다.
+			dto.setM_id((String) session.getAttribute("mid"));
 
-		m.addAttribute("dto", res);
-		return "update";
+			BoardDTO res = boardService.detail(dto);
+			if(res != null) { // 내 글 수정
+					m.addAttribute("dto", res);
+					return "update";
+			}else { // 다른 사람 글이면 null
+					return "warning";
+			}
+
+		} else {
+			return "redirect:/login";
+		}
 	}
 	
 	@PostMapping("/update")

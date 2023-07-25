@@ -2,27 +2,40 @@
 
 table {
 	border-top: 1px solid #d1d1d1;
+	border-collapse: collapse;
 }
 
 td {
 	width: 5%;
 	text-align: center;
-	border-bottom: 1px solid #dddddd;
+	padding:8px;
+	color:#333;
+	font-weight: 500;
+}
+
+.td2 {
+	width: 1%;
+	text-align: center;
 }
 
 .td3 {
 	width: 1%;
 	text-align: center;
+	color:#666;
+	font-weight: 500;
 }
 
 .td4 {
 	width: 30%;
 	text-align: left;
+	color:#232f3e;
+	font-weight: 500;
 }
 
 tr {
 	width: 10%;
 	height: 40px;
+	border-bottom: 1px solid #dddddd;
 }
 
 /* tr:hover {
@@ -49,7 +62,7 @@ body {
 }
 
 #solid {
-	border-right: 1px solid #d1d1d1;
+	border-right: 1px solid #E2E2E2;
 }
 
 button {

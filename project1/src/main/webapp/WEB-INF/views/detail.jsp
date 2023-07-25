@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="./css/menu.css">
 <link rel="stylesheet" href="./css/board.css">
 <link rel="stylesheet" href="./css/detail.css">
+<link rel="icon" href="data:;base64,iVBORw0KGgo=">
 <script type="text/javascript">
 	function del(){
 		let chk = confirm("삭제 하시겠습니까?");
@@ -29,13 +30,17 @@
 <%@ include file="menu.jsp" %>
 <body>
 	<!-- <img alt="사진" src="./img/a.PNG">-->
-	<div class="detail-title" id="bTitle">${dto.btitle } ${dto.blike }</div>
+	<div class="detail-title" id="bTitle">${dto.btitle }</div>
 	<%-- 값 : ${dto }<br><br> --%>
 	<div class="detail-content">
-			<div class="name" id="detail-name">${dto.m_name }님</div>
+		<div class="name" id="detail-name">
+			<div class="view">${dto.blike }</div>
+			<div class="name-color">${dto.m_name }님</div>
+		</div>
 		<div class="name-bar">
-			<div class="date"  id="detail-date">${dto.bdate }</div>
-			<div class="date"  id="detail-date">${dto.bip }</div>
+			<div class="date" id="detail-date">${dto.bdate }
+				<div class="view">${dto.bip }</div>
+			</div>
 		</div>
 		<div class="content">${dto.bcontent }</div>
 		<!-- <img alt="삭제" src="/img/delete.png">
