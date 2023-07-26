@@ -6,5 +6,7 @@
 	<typeAliases>
 		<typeAlias type="com.jy.pro1.dto.BoardDTO" alias="boardDTO"/>
 		<typeAlias type="com.jy.pro1.dto.LoginDTO" alias="loginDTO"/>
+		<typeAlias type="com.jy.pro1.dto.PageDTO" alias="pageDTO"/>
+		<typeAlias type="com.jy.pro1.dto.MemberDTO" alias="memberDTO"/>
 	</typeAliases>
 </configuration>

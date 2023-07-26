@@ -2,14 +2,24 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="./css/board.css">
-<link rel="stylesheet" href="./css/menu.css">
+<link rel="stylesheet" type="text/css" href="./css/board.css">
+<link rel="stylesheet" type="text/css"  href="./css/menu.css">
 <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+
+<script type="text/javascript">
+function linkPage(pageNo){
+	location.href = "./board?pageNo="+pageNo;
+}	
+</script>
+
 </head>
 <body>
 	<%@ include file="menu.jsp"%>
@@ -20,7 +30,7 @@
 			<br>
 			<c:choose>
 				<c:when test="${fn:length(list) gt 0}">
-					<table>
+					<table class="board_table">
 						<c:forEach items="${list}" var="i">
 							<!-- onclick 자바스크립트 페이지 이동, URL?파라미터=값 -->
 							<tr onclick="location.href='./detail?bno=${i.bno }'">
@@ -32,6 +42,11 @@
 							</tr>
 						</c:forEach>
 					</table>
+					<div class="page_wrap">
+								<div class ="page_nation" >
+								<ui:pagination paginationInfo="${paginationInfo}" type="image" jsFunction="linkPage"/>
+							</div>
+					</div>
 				</c:when>
 				<c:otherwise>
 				<br>

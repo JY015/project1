@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.jy.pro1.dao.BoardDAO;
 import com.jy.pro1.dto.BoardDTO;
+import com.jy.pro1.dto.PageDTO;
 import com.jy.pro1.util.Util;
 
 @Service
@@ -19,8 +20,8 @@ public class BoardService {
 	private Util util;
 	
 	// 보드 리스트 불러오는 메소드
-	public List<BoardDTO> boardList(){
-		return boardDAO.boardList();
+	public List<BoardDTO> boardList(PageDTO page){
+		return boardDAO.boardList(page);
 	}
 
 	public BoardDTO detail(BoardDTO dto2) {
@@ -76,6 +77,11 @@ public class BoardService {
 
 	public void update(BoardDTO dto) {
 		boardDAO.update(dto);
+	}
+
+	public int totalCount() {
+		// TODO Auto-generated method stub
+		return boardDAO.totalCount();
 	}
 
 

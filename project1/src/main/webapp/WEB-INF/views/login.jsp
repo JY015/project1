@@ -62,7 +62,7 @@ let text="<p> 올바른 아이디를 입력하세요.</p>"; // 전역변수
 								</form>
 								</div>
 							</div>
-							<a href="" class="button_join">회원가입하기</a>
+							<a href="./register" class="button_join">회원가입하기</a>
 						</div>
 					</div>
 				</div>

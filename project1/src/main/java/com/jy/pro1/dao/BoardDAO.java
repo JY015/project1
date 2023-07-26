@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.jy.pro1.dto.BoardDTO;
+import com.jy.pro1.dto.PageDTO;
 
 // Inject 사용해보기
 
@@ -16,8 +17,8 @@ public class BoardDAO {
 	@Autowired
 	private SqlSession sqlSession;
 
-	public List<BoardDTO> boardList(){
-		return sqlSession.selectList("board.boardList");
+	public List<BoardDTO> boardList(PageDTO page){
+		return sqlSession.selectList("board.boardList", page);
 	}
 
 	public BoardDTO detail(BoardDTO dto2) {
@@ -34,13 +35,15 @@ public class BoardDAO {
 	}
 	
 	public void update(BoardDTO dto) {
-		sqlSession.update("board.update",dto);
-		
+		sqlSession.update("board.update",dto);		
 	}
 
 	public void views(BoardDTO dto2) {
-		sqlSession.update("board.views", dto2);
-		
+		sqlSession.update("board.views", dto2);		
+	}
+
+	public int totalCount() {
+		return sqlSession.selectOne("board.totalCount");
 	}
 
 }
