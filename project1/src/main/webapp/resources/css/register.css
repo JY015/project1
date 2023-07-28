@@ -164,12 +164,17 @@ input {
 }
 
 .form_button {
-
     display: flex;
     justify-content: center;
     position: relative;
     padding: 1.25em 0;
-    border-top: 1px solid rgba(0,0,0,0.2);
+}
+
+.cancel_button {
+	display: flex;
+    justify-content: center;
+    position: relative;
+    padding: 1.25em 0;
 }
 
 .form_button .button-agree {
@@ -207,3 +212,53 @@ button, input, optgroup, select, textarea {
     margin: 0;
     background-color: inherit;
 }
+
+.loginok {
+	display: inline-block;
+	font-size: 2.167em;
+	font-weight: 300;
+	padding: 2.192em 0px;
+	border-bottom: 1px solid #333;
+	width: 11em;
+	height: 50px;
+	position: absolute;
+	top: 20%;
+	left: 42%;
+	margin: -25px 0 0 -25px;
+}
+	
+.loginok_btn {
+    font-size: 20px;
+    font-weight: 300;
+    padding: 0.192em 0px;
+    width: 210px;
+    height: 50px;
+    position: absolute;
+    top: 153%;
+    left: 22%;
+    margin: -25px 0 0 -25px;
+}
+
+.id_ok{
+color:#008000;
+display: none;
+}
+
+.id_already{
+color:#6A82FB; 
+display: none;
+}
+
+.mbti{
+	margin: 7px;
+	padding: 0px;
+	border-radius: 2px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+}
+.birth{
+	margin: 7px;
+	padding: 0px;
+	border-radius: 2px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+}
+

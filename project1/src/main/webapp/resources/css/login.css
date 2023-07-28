@@ -168,3 +168,12 @@ input::placeholder {
 	font-family: "Roboto", "Noto Sans KR", 나눔고딕, "Nanum Gothic",
 		"Malgun Gothic", 맑은고딕, 굴림, 돋움, "Dotum", "sans-serif";
 }
+
+.idpwSearch{
+	display: block;
+	width: 15em;
+	font-size: 1.167em;
+	margin: -5.857em auto;
+	padding: 0.929em 1.429em;
+	border-radius: 2px;
+}

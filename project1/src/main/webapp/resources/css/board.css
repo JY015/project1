@@ -40,10 +40,6 @@ tr {
 	border-bottom: 1px solid #dddddd;
 }
 
-/* tr:hover {
-	background-color: #e4d2c0;
-} */
-
 #hidden {
 	display: none;
 }
@@ -68,14 +64,12 @@ body {
 }
 
 button {
-	width: 81px;
-	height:38px;
 	color: white;
 	background-color: #37475A;
 	float: right;
 	text-align: center;
 	margin-right: 4px;
-	
+	font-size: 1.333em;
 }
 
 .whole{
@@ -148,4 +142,29 @@ button {
 
 .page_nation .none {
 	display:none;
+}
+
+.detail_button{
+	width: 80px;
+	height:30px;
+	top: -50px;
+  	right: 16px;
+  	position: relative;
+}
+
+.write_button{
+	width: 81px;
+	height:38px
+}
+
+.register_cancel_button{
+    background-color: #37475A;
+    float: right;
+    text-align: center;
+	font-size: 1.333em;
+    color: #fff;
+    margin: 0 0.188em;
+    padding: 0.625em 1.25em;
+    border: 1px solid rgba(0,0,0,0.1);
+}
 }

@@ -1,6 +1,7 @@
 package com.jy.pro1.controller;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -105,7 +106,11 @@ public class BoardController {
 			//세션에서 불러오기
 			dto.setM_id((String)session.getAttribute("mid")); // 세션에서 가져옴
 			dto.setM_name((String)session.getAttribute("mname")); // 세션에서 가져옴
-
+			dto.setUuid(UUID.randomUUID().toString());
+//			System.out.println("======================");
+//			System.out.println(dto.getUuid());
+//			System.out.println(dto.getUuid().length());
+//			System.out.println("======================");
 			// Service -> DAO -> mybatis -> DB로 보내서 저장하기
 			
 			boardService.write(dto);

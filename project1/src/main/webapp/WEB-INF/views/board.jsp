@@ -57,7 +57,7 @@ function linkPage(pageNo){
 			</c:choose>
 			<br>
 			<c:if test="${sessionScope.mname ne null}" >
-			<button onclick="location.href='./write'">글쓰기</button>
+			<button class="write_button" onclick="location.href='./write'">글쓰기</button>
 			</c:if>
 
 		</div>

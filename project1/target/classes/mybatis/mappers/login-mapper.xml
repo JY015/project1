@@ -3,11 +3,34 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="login">
+
+	<resultMap type="com.jy.pro1.dto.MemberDTO" id="register">
+		<result column="m_no" property="no" jdbcType="INTEGER" javaType="Integer" />
+		<result column="m_id" property="id" jdbcType="VARCHAR" javaType="String" />
+		<result column="m_name" property="name" jdbcType="VARCHAR" javaType="String" />
+		<result column="m_addr" property="addr" jdbcType="VARCHAR" javaType="String" />
+		<result column="m_birth" property="birth" jdbcType="DATE" javaType="String" />
+		<result column="m_mbti" property="mbti" jdbcType="VARCHAR" javaType="String" />
+		<result column="m_gender" property="gender" jdbcType="INTEGER" javaType="Integer" />
+	</resultMap>
 	
 	<select id="login" parameterType="loginDTO" resultType="loginDTO" >
 		SELECT m_name, count(*) AS 'count' 
 		FROM membersview
 		WHERE m_id = #{m_id } and m_pw = #{m_pw }
+	</select>
+	
+	<insert id="register" parameterType="memberDTO">
+		INSERT into members (m_id, m_pw, m_name, m_addr, m_mbti, m_birth, m_gender)
+		values(#{id}, #{pw1}, #{name}, #{addr}, #{mbti}, #{birth},#{gender})
+	</insert>
+	
+	<select id="members" resultMap="register">
+		SELECT * FROM members
+	</select>
+	
+	<select id="idCheck" resultType="int">
+		SELECT COUNT(*) FROM members WHERE m_id=#{m_id}
 	</select>
  
 

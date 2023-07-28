@@ -47,8 +47,8 @@
 		<img alt="수정" src="/img/update.png"> -->
 		<c:if test="${sessionScope.mid ne null && sessionScope.mid eq dto.m_id }" >
 		<%-- <c:if test="${sessionScope.mname eq dto.m_name }" > --%>
-		<button onclick="del()">삭제</button>
-		<button onclick="update()">수정</button>
+		<button class="detail_button" onclick="del()">삭제</button>
+		<button class="detail_button" onclick="update()">수정</button>
 		</c:if> 
 	</div>
 </body>

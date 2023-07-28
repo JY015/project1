@@ -63,6 +63,10 @@ let text="<p> 올바른 아이디를 입력하세요.</p>"; // 전역변수
 								</div>
 							</div>
 							<a href="./register" class="button_join">회원가입하기</a>
+							<div class="idpwSearch">
+								<a href="./" >아이디 찾기 | </a>
+								<a href="./" >비밀번호 찾기</a>
+								</div>
 						</div>
 					</div>
 				</div>

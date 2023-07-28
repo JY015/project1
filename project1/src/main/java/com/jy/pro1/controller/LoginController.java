@@ -1,5 +1,7 @@
 package com.jy.pro1.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -7,8 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.jy.pro1.dto.LoginDTO;
+import com.jy.pro1.dto.MemberDTO;
 import com.jy.pro1.service.LoginService;
 
 @Controller
@@ -16,9 +20,14 @@ public class LoginController {
 
 	@Autowired
 	private LoginService loginService;
+	
+	/*
+	 * @Autowired private Util util;
+	 */
 
 	@GetMapping("/login")
 	public String login() {
+		/* System.out.println(util.getIp()); */
 		return "login";
 	}
 
@@ -45,42 +54,7 @@ public class LoginController {
 			session.setAttribute("mname", dto.getM_name());
 			session.setAttribute("mid", req.getParameter("id"));
 			// 세션 : 서버, 쿠키 : 클라이언트
-//			System.out.println();
-//			System.out.println();
-//			System.out.println();
-//			System.out.println();
-//			System.out.println();
-//			System.out.println();
-//			System.out.println();
-//			System.out.println();
-//			System.out.println();
-//			System.out.println();
-//			System.out.println();
-//			System.out.println();
-//			System.out.println();
-//			String str1="..............................................................................................................................................";
-//			String str2="!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!";
-//			String str3="@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@";
-//			String str4="########################################################################";
-//			String str5="$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$";
-//			String str6="%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%";
-//			String str7="^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^";
-//			String str8="&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&";
-//			String str9="************************************************************************";
-//			String str10="((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((";
-//			String str11="\")))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))";
-//			String str12="..............................................................................................................................................";
-//			dto.setBcontent(dto.getBcontent().replaceAll(")))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))",")))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))\n"));
-//			dto.setBcontent(dto.getBcontent().replaceAll("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++","+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n"));
-//			dto.setBcontent(dto.getBcontent().replaceAll("===================================================================","===================================================================\n"));
-//			dto.setBcontent(dto.getBcontent().replaceAll(";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;",";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;\n"));
-//			dto.setBcontent(dto.getBcontent().replaceAll("'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''","'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''\n"));
-//			dto.setBcontent(dto.getBcontent().replaceAll("////////////////////////////////////////////////////////////////////////////////////////////////////////////////////","////////////////////////////////////////////////////////////////////////////////////////////////////////////////////\n"));
-////			dto.setBcontent(dto.getBcontent().replaceAll("?????????????????????????????????????????????????????????????????????????????????","?????????????????????????????????????????????????????????????????????????????????\n"));
-//			dto.setBcontent(dto.getBcontent().replaceAll("```````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````","```````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````\n"));
-//			dto.setBcontent(dto.getBcontent().replaceAll("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~","~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"));
-//			dto.setBcontent(dto.getBcontent().replaceAll("_______________________________________________________________________________","_______________________________________________________________________________\n"));
-//			
+
 
 			return "redirect:index"; // 정상적으로 로그인 했다면 인덱스로 가기
 		} else {
@@ -111,6 +85,43 @@ public class LoginController {
 	public String myInfo(HttpServletRequest req) {
 		
 		return "myInfo";
+	}
+	
+	@GetMapping("/register")
+	public String register() {
+		return "register";
+	}
+	
+	@PostMapping("/register")
+	public String register(MemberDTO memberDTO) {
+		
+		System.out.println("jsp에서 오는 값 : " + memberDTO.getGender());
+		System.out.println("jsp에서 오는 값 : " + memberDTO.getBirth());
+	  
+		int result = loginService.register(memberDTO);
+		
+		System.out.println(result);
+		if(result == 1) {
+			return "redirect:/login";
+		} else {
+			return "loginok";
+		}
 
 	}
+	
+	@GetMapping("/members")
+	public ModelAndView members() {
+		ModelAndView mv = new ModelAndView("members");
+		List<MemberDTO> list = loginService.members();
+		mv.addObject("list",list);
+		return mv;
+	}
+	
+//	@PostMapping("/idCheck")
+//	@ResponseBody
+//	public int idcheck(@RequestParam("id")String id) throws Exception{
+//		System.out.println(id);
+//		int cnt = memberService.idCheck(id);
+//		return cnt;
+//	}
 }

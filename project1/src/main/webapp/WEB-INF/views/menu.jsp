@@ -12,6 +12,7 @@
 			<li onclick="link('board2')"  class="menu_title">게시판2</li>
 			<li onclick="link('mooni')"   class="menu_title">문의사항</li>
 			<li onclick="link('notice')"  class="menu_title">공지</li>
+			<li onclick="link('members')"  class="menu_title">회원리스트</li>
 			<c:choose>
 				<c:when test="${sessionScope.mname eq null}">
 					<li onclick="link('login')" class="menu_login">로그인</li>			

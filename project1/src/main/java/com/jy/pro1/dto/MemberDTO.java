@@ -1,63 +1,71 @@
 package com.jy.pro1.dto;
 
 public class MemberDTO {
-	private int m_no;
-	private String m_id, m_pw, m_name, m_joindate, m_addr, m_grade;
-
-	public int getM_no() {
-		return m_no;
+	private int gender, no;
+	private String id, pw1, name, addr, mbti, birth;
+	
+	public int getNo() {
+		return no;
 	}
 
-	public void setM_no(int m_no) {
-		this.m_no = m_no;
+	public void setNo(int no) {
+		this.no = no;
 	}
 
-	public String getM_id() {
-		return m_id;
+	public int getGender() {
+		return gender;
 	}
 
-	public void setM_id(String m_id) {
-		this.m_id = m_id;
+	public void setGender(int gender) {
+		this.gender = gender;
 	}
 
-	public String getM_pw() {
-		return m_pw;
+	public String getId() {
+		return id;
 	}
 
-	public void setM_pw(String m_pw) {
-		this.m_pw = m_pw;
+	public void setId(String id) {
+		this.id = id;
 	}
 
-	public String getM_name() {
-		return m_name;
+	public String getPw1() {
+		return pw1;
 	}
 
-	public void setM_name(String m_name) {
-		this.m_name = m_name;
+	public void setPw1(String pw1) {
+		this.pw1 = pw1;
 	}
 
-	public String getM_joindate() {
-		return m_joindate;
+	public String getName() {
+		return name;
 	}
 
-	public void setM_joindate(String m_joindate) {
-		this.m_joindate = m_joindate;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getM_addr() {
-		return m_addr;
+	public String getAddr() {
+		return addr;
 	}
 
-	public void setM_addr(String m_addr) {
-		this.m_addr = m_addr;
+	public void setAddr(String addr) {
+		this.addr = addr;
 	}
 
-	public String getM_grade() {
-		return m_grade;
+	public String getMbti() {
+		return mbti;
 	}
 
-	public void setM_grade(String m_grade) {
-		this.m_grade = m_grade;
+	public void setMbti(String mbti) {
+		this.mbti = mbti;
+	}
+
+	public String getBirth() {
+		return birth;
+	}
+
+	public void setBirth(String birth) {
+		this.birth = birth;
 	}
 
 }
