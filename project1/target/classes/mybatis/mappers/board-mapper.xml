@@ -27,9 +27,10 @@
  		VALUES(#{btitle }, #{bcontent },(select m_no from members where m_id=#{m_id}), #{bip}, #{uuid})
  	</insert>
  	
- 	<delete id="delete" parameterType="boardDTO" >
- 		DELETE FROM board where bno=#{bno} AND m_no=(select m_no from members where m_id=#{m_id})
- 	</delete>
+ 	<update id="delete" parameterType="boardDTO" >
+ 		UPDATE board SET bdel=0 
+ 		where bno=#{bno} AND m_no=(select m_no from members where m_id=#{m_id})
+ 	</update>
  	
  	<update id="update" parameterType="boardDTO">
  		UPDATE board 
@@ -42,4 +43,7 @@
  		where bno= #{bno }
  	</update>
 
+	<select id = "commentslist" parameterType="Integer" resultType="Map">
+		SELECT * FROM commentsview WHERE bno=#{bno}
+	</select>
 </mapper>

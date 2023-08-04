@@ -1,6 +1,7 @@
 package com.jy.pro1.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,7 @@ public class BoardDAO {
 	}
 
 	public void delete(BoardDTO dto) {
-		sqlSession.delete("board.delete", dto);
+		sqlSession.update("board.delete", dto);
 	}
 	
 	public void update(BoardDTO dto) {
@@ -44,6 +45,10 @@ public class BoardDAO {
 
 	public int totalCount() {
 		return sqlSession.selectOne("board.totalCount");
+	}
+
+	public List<Map<String, Object>> commentslist(int bno) {
+		return sqlSession.selectList("board.commentslist",bno);
 	}
 
 }

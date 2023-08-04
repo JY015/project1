@@ -6,36 +6,65 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="./css/register.css">
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<!-- <script type="text/javascript">	
-	function sameIdCheck() {
-		/* alert("!"); */
-		var id = $('#userId').val();
-			
-		$.ajax({
-			url:'./idCheck', //Controller에서 요청 받을 주소
-			type:'post', //POST 방식으로 전달
-			data:{id:id},
-			success:function(cnt){//컨트롤러에서 넘어온 cnt값을 받는다 
-                if(cnt != 1 && id.length >0 ){ //cnt가 1이 아니면(=0일 경우) -> 사용 가능한 아이디 
-                    $('.id_ok').css("display","inline-block"); 
-                    $('.id_already').css("display", "none");
-                } else if(cnt == 1 && id.length >0 ){ // cnt가 1일 경우 -> 이미 존재하는 아이디
-                    $('.id_already').css("display","inline-block");
-                    $('.id_ok').css("display", "none");
-                } else{ // id에 아무것도 없을떄 문구 안보이게
-                	 $('.id_ok').css("display","none"); 
-                     $('.id_already').css("display", "none");
-                }
-            },
-				error:function(){
-					alert("에러입니다");
-			}
-		}); 
-	};
-</script>-->
+<script src="./js/jquery-3.7.0.min.js"></script>
+<script type="text/javascript">	
+$(function(){
+	$("#idCheck").click(function(){
+		let id = $("#id").val();
+		
+		console.log(id);
+		
+		if(id == "" || id.length<4){
+			$("#id").focus();
+			$("#resultMSG").text("영문, 숫자만 입력 가능/최소 4자 이상 입력하세요.");
+			/* $("#resultMSG").css("color","red");
+			$("#resultMSG").css("font-weight","bold");
+			$("#resultMSG").css("font-size","15pt"); */
+		} else{
+			$.ajax({
+				url:"./checkID", // 
+				type:"post",
+				data:{"id" : id},
+				dataType : "json", //{result : 0}
+				success:function(data){//위에 데이터가 아닌 서버에서 날라오는 data
+					//alert(data.result);
+					if(data.result == 1){
+						$("#id").css("background-color","red").focus();
+						$("#resultMSG").text("이미 등록된 아이디 입니다.")	
+					} else{
+						$("#id").css("background-color","white");
+						$("#resultMSG").text("사용할 수 있는 아이디 입니다.")							
+					}
+					/* $("#resultMSG").text("성공시 :" +data); */
+				},
+				error : function(request, status, error){
+					$("#resultMSG").text("오류가 발생했습니다. 가입할 수 없습니다.");
+				}
+			});
+		}
+		return false; // 멈추기
+	});	
+});
 
-<script type="text/javascript">
+$(function(){
+	$("#pwCheck").click(function(){
+		let pw1=$("#pw1").val();
+		let pw2=$("#pw2").val();
+		
+		console.log(pw1);
+		console.log(pw2);
+	
+		if(pw1 == pw2){
+			$("#pwMSG").text("비밀번호가 일치합니다.");
+		} else{
+			$("#pwMSG").text("비밀번호가 일치하지 않습니다.");
+		}
+		return false;
+	});	
+});
+</script>
+
+<!-- <script type="text/javascript">
 
 	function check() {
 		let id = document.getElementById("id");
@@ -108,6 +137,7 @@
 
 	}
 </script>
+ -->
 </head>
 <body>
 	<%@ include file="menu.jsp"%>
@@ -118,35 +148,37 @@
 			<h3 class="form_title">
 				기본정보입력<span class="title_tip">(모두 필수 입력 항목입니다.)</span>
 			</h3>
-			<form action="./register" method="post"
-				onsubmit="return check()" name="form">
+			<form action="./register" method="post" >
 				<div class="form topline">
 					<table>
 						<tbody>
 							<tr>
 								<th class="id">아이디</th>
 									<td>
-										<input type="text" autocapitalize="off" name="id" id="id" maxlength="15" oninput="sameIdCheck()">
-										<span class="id_ok">사용 가능한 아이디입니다.</span> 
-										<span class="id_already">누군가 이 아이디를 사용하고 있어요.</span> 
-										<span class="tip">
+<!-- 										<input type="text" autocapitalize="off" name="id" id="id" maxlength="15" oninput="sameIdCheck()"> -->
+										<input type="text" autocapitalize="off" name="id" id="id" maxlength="15" >
+										<button id="idCheck" class="idCheck"> 중복검사</button>
+										<br>
+										<span id="resultMSG" class="tip"></span>
+										<!-- <span class="tip">
 										영문, 숫자만 입력 가능/최소 4자 이상 입력하세요.
-										</span>
+										</span> -->
 									</td>
 							</tr>
 							<tr>
 								<th class="id">비밀번호</th>
 									<td>
-										<input type="password" name="pw1" id="pw1" maxlength="15">
+										<input type="password" name="pw1" id="pw1" maxlength="15" autoComplete="off">
 									</td>
 							</tr>
 							<tr>
 								<th class="id">비밀번호 확인</th>
 								<td>
-									<input type="password" name="pw2" id="pw2" maxlength="15"> 
-									<span class="tip">
+									<input type="password" name="pw2" id="pw2" maxlength="15" autoComplete="off"> 
+									<span id="pwCheck" class="tip">
 									영문, 숫자, 특수기호 혼합 사용가능/ 최소 4자 이상 입력하세요. 
 									</span>
+									<span id="pwMSG" class="tip"></span>
 								</td>
 							</tr>
 							<tr>

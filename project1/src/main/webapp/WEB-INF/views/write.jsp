@@ -43,6 +43,7 @@
 			<textarea id="summernote" name ="content" ></textarea>
 			<button type="submit" class="btn">글쓰기</button>
 			<button class="btn" onclick="location.href='./board'">취소</button>
+			<!-- <button class="btn100 btn btn-primary" onclick="location.href='./board'">취소</button> -->
 		</form>
 	</div>
 

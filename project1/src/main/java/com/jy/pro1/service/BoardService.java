@@ -1,6 +1,7 @@
 package com.jy.pro1.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -80,8 +81,11 @@ public class BoardService {
 	}
 
 	public int totalCount() {
-		// TODO Auto-generated method stub
 		return boardDAO.totalCount();
+	}
+
+	public List<Map<String, Object>> commentslist(int bno) {
+		return boardDAO.commentslist(bno);
 	}
 
 

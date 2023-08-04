@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 
 <!DOCTYPE html>
@@ -35,7 +34,11 @@ function linkPage(pageNo){
 							<!-- onclick 자바스크립트 페이지 이동, URL?파라미터=값 -->
 							<tr onclick="location.href='./detail?bno=${i.bno }'">
 								<td class="td2" id="solid" hidden="hidden">${i.bno }</td>
-								<td class="td4" id="solid">${i.btitle }</td>
+								<td class="td4" id="solid">${i.btitle }
+								<small>
+								<c:if test="${i.commentcount ne 0}"> (${i.commentcount })</c:if>
+								</small>
+								</td>
 								<td class="td1" id="solid">${i.m_name }</td>
 								<td class="td3" id="solid">${i.blike }</td>
 								<td class="td1">${i.bdate }</td>

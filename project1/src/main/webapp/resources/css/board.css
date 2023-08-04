@@ -144,13 +144,22 @@ button {
 	display:none;
 }
 
-.detail_button{
+.detail_button1{
+	position: absolute;
 	width: 80px;
 	height:30px;
-	top: -50px;
-  	right: 16px;
-  	position: relative;
+	bottom: 25px;
+  	right: 410px;
 }
+
+.detail_button2{
+	position: absolute;
+	width: 80px;
+	height:30px;
+	bottom: 25px;
+  	right: 500px;
+}
+
 
 .write_button{
 	width: 81px;
@@ -167,4 +176,39 @@ button {
     padding: 0.625em 1.25em;
     border: 1px solid rgba(0,0,0,0.1);
 }
+
+.idCheck{
+	float:none;
+	padding:8px;
+	font-size:1.0em;
+}
+#page_float{
+	float:none;
+}
+.forward{
+	float:none;
+}
+
+small{
+	color : red;
+	font-weight: bold;
+	width: 50px;
+	height: 50px;
+}
+
+.commentsList{
+	font-size : 15px;
+}
+
+#comment_main{
+	width: 96%;
+    background: #F1F1F1;
+    border-bottom: 1px solid #d1d1d1;
+    height: 12px;
+    padding: 10px;
+}
+
+.comment_head{
+    color: #516B82;
+    padding: 1.25em 0;
 }

@@ -117,11 +117,4 @@ public class LoginController {
 		return mv;
 	}
 	
-//	@PostMapping("/idCheck")
-//	@ResponseBody
-//	public int idcheck(@RequestParam("id")String id) throws Exception{
-//		System.out.println(id);
-//		int cnt = memberService.idCheck(id);
-//		return cnt;
-//	}
 }

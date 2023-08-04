@@ -1,6 +1,7 @@
 package com.jy.pro1.controller;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -78,6 +79,12 @@ public class BoardController {
 //		dto.setM_id(null); 글 상세보기에서는 mid가 없어도 된다.
 		
 		BoardDTO res = boardService.detail(dto);
+//		System.out.println(res.getCommentcount());
+		if(res.getCommentcount() > 0) {
+			//db에 물어봐서 jsp로 보냄
+			List<Map<String, Object>> commentsList = boardService.commentslist(bno);
+			m.addAttribute("commentsList",commentsList);
+		}
 		m.addAttribute("dto", res);
 		
 //		m.addAttribute("bno",dto.getBno());

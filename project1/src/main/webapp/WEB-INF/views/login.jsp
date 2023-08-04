@@ -10,10 +10,11 @@
 <link rel="stylesheet" href="./css/menu.css">
 <link rel="stylesheet" href="./css/board.css">
 <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
 <script type="text/javascript">
 
 // 호이스팅이 뭐에요? let vs var? json? const /
-let text="<p> 올바른 아이디를 입력하세요.</p>"; // 전역변수 
+/* let text="<p> 올바른 아이디를 입력하세요.</p>"; // 전역변수 
 	function checkID(){
 	let msg = document.getElementById("msg");
 		msg.innerHTML += "<p>" +document.getElementById("id").value +"아이디를 변경했습니다.</p>"
@@ -36,7 +37,33 @@ let text="<p> 올바른 아이디를 입력하세요.</p>"; // 전역변수
 			pw.focus();
 			return false;
 		}
+	} */
+//Jquery
+$(function(){
+	$(".button_login").click(function(){
+	let id=$("#id").val();
+	let pw=$("#pw").val();
+	
+	if(id.length<2){
+		alert("아이디를 입력하세요.");
+	}else{
+		if(pw.length<2){
+			alert("암호를 입력하세요.");
+		} else{
+			//아이디하고 암호하고 정확하게 입력되었으면
+			let form = $("<form></form>");
+			form.attr("method","post");
+			form.attr("action","./login");
+			form.append($("<input/>",{type:'hidden',name:'id', value:id}));
+			form.append($("<input/>",{type:'hidden',name:'pw', value:pw}));
+			form.appendTo("body");
+			form.submit();
+			
+		}
 	}
+	});
+});
+
 </script>
 </head>
 <body>
@@ -50,16 +77,17 @@ let text="<p> 올바른 아이디를 입력하세요.</p>"; // 전역변수
 							<div>
 								<h2 class="signin_title">게시판 로그인</h2>
 								<div class="signin-section">
-								<form action="./login" method="post" onsubmit="return check()">
-									<input class="signin_id" type="text" name="id" id="id" placeholder="아이디" maxlength="10" onchange="checkID()">
+								<!-- <form action="./login" method="post" onsubmit="return check()"> -->
+									<!-- <input class="signin_id" type="text" name="id" id="id" placeholder="아이디" maxlength="10" onchange="checkID()"> -->
+									<input class="signin_id" type="text" name="id" id="id" placeholder="아이디" maxlength="10" >
 									<br> 
 									<input class="signin_pw" type="password"  name="pw" id="pw" placeholder="비밀번호"  maxlength="15">
 									<br>
 									<!-- onclick="return check()" -->
-									<button class="button_login">로그인</button>
+									<button type="submit" class="button_login">로그인</button>
 									<span id="msg"></span>
 									<!--<button class="button_login" type="button" onclick="location.href='index'">로그인</button> -->
-								</form>
+								<!-- </form> -->
 								</div>
 							</div>
 							<a href="./register" class="button_join">회원가입하기</a>

@@ -14,7 +14,7 @@ public class IndexController {
 	// 첫화면 로딩 : index.jsp 호출
 	@GetMapping(value={"/", "index"})
 	public String index() {
-		if(util.getIp().equals("172.30.1.6")) {
+		if(util.getIp().equals("172.30.1.58")) {
 			System.out.println("나");
 		}else if(util.getIp().equals("172.30.1.20")) {
 			System.out.println("대원 접속");
